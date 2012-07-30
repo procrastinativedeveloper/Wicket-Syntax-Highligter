@@ -12,6 +12,8 @@ public class SyntaxHighlighterSettings implements Serializable{
 
     public SyntaxHighlighterSettings() {
         brushes.add(Brush.Core);
+        brushes.add(Brush.Java);
+
         themes.add(Theme.Core);
         themes.add(Theme.ThemeDefault);
     }
@@ -25,16 +27,19 @@ public class SyntaxHighlighterSettings implements Serializable{
         return "SyntaxHighlighter.all();";
     }
 
-    public List<ResourceReference> getResources() {
+    public List<ResourceReference> getJsResources() {
         List<ResourceReference> result = new ArrayList<ResourceReference>();
         for(Brush brush: brushes) {
             result.add(brush.getBrushResource());
         }
+        return result;
+    }
 
+    public List<ResourceReference> getCssResources() {
+        List<ResourceReference> result = new ArrayList<ResourceReference>();
         for(Theme theme: themes) {
             result.add(theme.getThemeResource());
         }
-
         return result;
     }
 }
