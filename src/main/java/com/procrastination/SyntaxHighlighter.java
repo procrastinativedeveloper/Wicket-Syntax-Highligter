@@ -9,7 +9,6 @@ import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.request.resource.ResourceReference;
 
 /**
- * still don't know that will be behavior all webcomponent
  *
  * it will be behavior, maybe add component based on webcomponent
  */
@@ -32,7 +31,6 @@ public class SyntaxHighlighter extends Behavior{
         for(ResourceReference resource: settings.getJsResources()){
             response.render(JavaScriptHeaderItem.forReference(resource));
         }
-
         response.render(OnDomReadyHeaderItem.forScript(settings.generateScripts()));
     }
 }

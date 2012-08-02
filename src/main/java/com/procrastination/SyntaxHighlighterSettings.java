@@ -19,9 +19,25 @@ public class SyntaxHighlighterSettings implements Serializable{
     }
 
     private List<Brush> brushes = new ArrayList<Brush>();
-
+    /*TODO Can be only one*/
     private List<Theme> themes = new ArrayList<Theme>();
 
+    /*config*/
+    private Localization localization = null;
+    private boolean stripBrs = false;
+    private String tagName = "pre";
+
+    /*defaults this options could be configured per component*/
+    private boolean autolinks = true;
+    private String classname = null;
+    private boolean collapse =  false;
+    private int firstLine = -1;
+    private boolean gutter = true;
+    private List<Integer> highlight = new ArrayList<Integer>();
+    private boolean htmlScript = false;
+    private boolean smartTabs = true;
+    private int tabSize = 4;
+    private boolean toolbar = false;
 
     public String generateScripts(){
         return "SyntaxHighlighter.all();";
