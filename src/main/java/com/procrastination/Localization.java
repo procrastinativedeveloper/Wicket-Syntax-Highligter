@@ -3,7 +3,7 @@ package com.procrastination;
 import java.io.Serializable;
 
 public class Localization implements Serializable {
-
+    /*
     private String expandSource = "expandSource";
     private String help = "help";
     private String alert =  "SyntaxHighlighter\\n\\n";
@@ -12,7 +12,17 @@ public class Localization implements Serializable {
     private String viewSource = "view source";
     private String copyToClipboard = "copy to clipboard";
     private String copyToClipboardConfirmation = "The code is in your clipboard now";
-    private String print = "pring";
+    private String print = "print";
+    */
+    private String expandSource = null;
+    private String help = null;
+    private String alert =  null;
+    private String noBrush = null;
+    private String brushNotHtmlScript = null;
+    private String viewSource = null;
+    private String copyToClipboard =null;
+    private String copyToClipboardConfirmation = null;
+    private String print = null;
 
     public String getExpandSource() {
         return expandSource;

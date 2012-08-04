@@ -12,9 +12,9 @@ import org.apache.wicket.request.resource.ResourceReference;
  *
  * it will be behavior, maybe add component based on webcomponent
  */
-public class GlobalSyntaxHighlighter extends Behavior{
+public class GlobalSyntaxHighlighterBehavior extends Behavior{
 
-    public GlobalSyntaxHighlighter(SyntaxHighlighterSettings settings) {
+    public GlobalSyntaxHighlighterBehavior(SyntaxHighlighterSettings settings) {
         this.settings = settings;
     }
     private SyntaxHighlighterSettings settings = null;

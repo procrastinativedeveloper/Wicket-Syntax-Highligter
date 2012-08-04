@@ -34,7 +34,8 @@ public class SyntaxHighlighterSettings implements Serializable{
     }
 
     public String generateScripts(){
-        return "SyntaxHighlighter.all();";
+        InitScriptProducer scriptProducer = new InitScriptProducer(this);
+        return scriptProducer.generateInitScript();
     }
 
     public List<ResourceReference> getJsResources() {
