@@ -12,32 +12,26 @@ public class SyntaxHighlighterSettings implements Serializable{
 
     public SyntaxHighlighterSettings() {
         brushes.add(Brush.Core);
-        brushes.add(Brush.Java);
-
         themes.add(Theme.Core);
         themes.add(Theme.ThemeDefault);
     }
 
     private List<Brush> brushes = new ArrayList<Brush>();
-    /*TODO Can be only one*/
+    /*TODO Should be only one*/
     private List<Theme> themes = new ArrayList<Theme>();
 
     /*config*/
     private Localization localization = null;
     private boolean stripBrs = false;
     private String tagName = "pre";
+    private Defaults defaults;
 
-    /*defaults this options could be configured per component*/
-    private boolean autolinks = true;
-    private String classname = null;
-    private boolean collapse =  false;
-    private int firstLine = -1;
-    private boolean gutter = true;
-    private List<Integer> highlight = new ArrayList<Integer>();
-    private boolean htmlScript = false;
-    private boolean smartTabs = true;
-    private int tabSize = 4;
-    private boolean toolbar = false;
+    public void putBrush(Brush brush) {
+        if (null == brush) {
+            throw new RuntimeException("Brush shouldn't be null");
+        }
+        brushes.add(brush);
+    }
 
     public String generateScripts(){
         return "SyntaxHighlighter.all();";
@@ -57,5 +51,37 @@ public class SyntaxHighlighterSettings implements Serializable{
             result.add(theme.getThemeResource());
         }
         return result;
+    }
+
+    public Localization getLocalization() {
+        return localization;
+    }
+
+    public void setLocalization(Localization localization) {
+        this.localization = localization;
+    }
+
+    public boolean isStripBrs() {
+        return stripBrs;
+    }
+
+    public void setStripBrs(boolean stripBrs) {
+        this.stripBrs = stripBrs;
+    }
+
+    public String getTagName() {
+        return tagName;
+    }
+
+    public void setTagName(String tagName) {
+        this.tagName = tagName;
+    }
+
+    public Defaults getDefaults() {
+        return defaults;
+    }
+
+    public void setDefaults(Defaults defaults) {
+        this.defaults = defaults;
     }
 }
