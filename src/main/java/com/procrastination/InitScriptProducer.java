@@ -71,7 +71,10 @@ public class InitScriptProducer implements Serializable{
             overrideDefaultsValue("collapse", false, defaults.isCollapse(), configSection);
             overrideDefaultsValue("first-line", Integer.toString(1), Integer.toString(defaults.getFirstLine()), configSection);
             overrideDefaultsValue("gutter", true, defaults.isGutter(), configSection);
-            //overrideDefaultsValue("highlight");
+            if ((defaults.getHighlight() != null) && (defaults.getHighlight().size() > 0)) {
+                //TODO clean up this mess
+                overrideDefaultsValueWithoutQuotes("highlight", "", defaults.getHighlightAsJsArray(), configSection);
+            }
             overrideDefaultsValue("html-script", false, defaults.isHtmlScript(), configSection);
             overrideDefaultsValue("smart-tabs", true, defaults.isSmartTabs(), configSection);
             overrideDefaultsValue("tab-size", Integer.toString(4), Integer.toString(defaults.getTabSize()), configSection);
@@ -82,8 +85,15 @@ public class InitScriptProducer implements Serializable{
 
     protected void overrideDefaultsValue(String property, String defaultValue,  String newValue,  StringBuilder builder) {
         if ( !defaultValue.equals(newValue) ) {
-            builder.append("SyntaxHighlighter.").append(property).append(" = \"")
+            builder.append("SyntaxHighlighter.defaults['").append(property).append("'] = \"")
                     .append(newValue).append("\";\n");
+        }
+    }
+
+    protected void overrideDefaultsValueWithoutQuotes(String property, String defaultValue,  String newValue,  StringBuilder builder) {
+        if ( !defaultValue.equals(newValue) ) {
+            builder.append("SyntaxHighlighter.defaults['").append(property).append("'] = ")
+                    .append(newValue).append(";\n");
         }
     }
 

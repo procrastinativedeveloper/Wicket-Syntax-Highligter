@@ -21,7 +21,7 @@ public class Defaults implements Serializable {/*defaults this options could be 
      * Allows you to add a custom class (or multiple classes) to every highlighter element that will be created on the page.
      * default: ''
      */
-    private String classname = null;
+    private String classname = "";
 
     /**
      * Allows you to force highlighted elements on the page to be collapsed by default.
@@ -148,5 +148,27 @@ public class Defaults implements Serializable {/*defaults this options could be 
 
     public void setToolbar(boolean toolbar) {
         this.toolbar = toolbar;
+    }
+
+    public String getHighlightAsJsArray() {
+        String result = "";
+        if (( null != highlight) && (highlight.size() > 0)) {
+            if (highlight.size() == 1) {
+                result = Integer.toString(highlight.get(0));
+            }else {
+                StringBuilder jsArrayBuilder = new StringBuilder();
+                jsArrayBuilder.append("[");
+
+                for(int i = 0; i < highlight.size(); i++) {
+                  jsArrayBuilder.append(highlight.get(i));
+                  if (i < (highlight.size() - 1)) {
+                      jsArrayBuilder.append(", ");
+                  }
+                }
+                jsArrayBuilder.append("]");
+                result = jsArrayBuilder.toString();
+            }
+        }
+        return result;
     }
 }
