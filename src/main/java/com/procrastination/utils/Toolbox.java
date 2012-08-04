@@ -17,4 +17,8 @@ public class Toolbox {
         return toTest == null || toTest.length() == 0;
     }
 
+    public static boolean isNotEmptyOrNull(String toTest) {
+        return !emptyOrNull(toTest);
+    }
+
 }
