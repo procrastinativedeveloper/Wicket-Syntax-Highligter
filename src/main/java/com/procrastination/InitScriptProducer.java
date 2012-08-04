@@ -1,5 +1,7 @@
 package com.procrastination;
 
+import com.procrastination.utils.Toolbox;
+
 import java.io.Serializable;
 
 public class InitScriptProducer implements Serializable{
@@ -12,11 +14,19 @@ public class InitScriptProducer implements Serializable{
     public String generateInitScript() {
         StringBuilder result = new StringBuilder();
 
+        //Override SyntaxHiglighter translation
         if (settings.getLocalization() != null) {
-            result.append(buildLocalization(settings.getLocalization()));
+            String localizationScript = buildLocalization(settings.getLocalization());
+            if (Toolbox.isNotEmptyOrNull(localizationScript)) {
+                result.append(localizationScript);
+            }
         }
 
-        result.append(buildConfigSection());
+        //Override default configuration of SyntaxHighlighter
+        String configOverride = buildConfigSection();
+        if (Toolbox.isNotEmptyOrNull(configOverride)) {
+            result.append(configOverride);
+        }
 
         result.append(syntaxHighlighterRunAll());
         return result.toString();
@@ -30,14 +40,26 @@ public class InitScriptProducer implements Serializable{
      */
     protected String buildLocalization(Localization localization) {
         StringBuilder translation = new StringBuilder();
-
-        if (localization.getAlert() != null) {
-
-        }
-
+        addTranslation("expandSource", localization.getExpandSource(), translation);
+        addTranslation("help", localization.getHelp(), translation);
+        addTranslation("alert", localization.getAlert(), translation);
+        addTranslation("noBrush", localization.getNoBrush(), translation);
+        addTranslation("brushNotHtmlScript", localization.getBrushNotHtmlScript(), translation);
+        addTranslation("viewSource", localization.getViewSource(), translation);
+        addTranslation("copyToClipboard", localization.getCopyToClipboard(), translation);
+        addTranslation("copyToClipboardConfirmation", localization.getCopyToClipboardConfirmation(), translation);
+        addTranslation("print", localization.getPrint(), translation);
         return translation.toString();
     }
 
+    //TODO escape jsCharacters in newValue, validation for npe etc...
+    protected void addTranslation(String propertyName, String newValue, StringBuilder translation) {
+        if (!Toolbox.emptyOrNull(newValue)) {
+          String propertyTranslation = new StringBuilder().append("SyntaxHighlighter.config.strings.").append(propertyName)
+                  .append(" = \"").append(newValue).append("\";\n").toString();
+            translation.append(propertyTranslation);
+        }
+    }
 
 
     private String buildConfigSection() {
