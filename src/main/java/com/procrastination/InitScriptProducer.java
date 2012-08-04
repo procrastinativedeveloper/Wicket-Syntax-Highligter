@@ -61,13 +61,37 @@ public class InitScriptProducer implements Serializable{
         }
     }
 
-
-    private String buildConfigSection() {
+    //TODO move into Defaults the default value
+    protected String buildConfigSection() {
+        Defaults defaults = settings.getDefaults();
         StringBuilder configSection = new StringBuilder();
+        if (null != defaults) {
+            overrideDefaultsValue("auto-links", true, defaults.isAutolinks(), configSection);
+            overrideDefaultsValue("class-name", "", defaults.getClassname(), configSection);
+            overrideDefaultsValue("collapse", false, defaults.isCollapse(), configSection);
+            overrideDefaultsValue("first-line", Integer.toString(1), Integer.toString(defaults.getFirstLine()), configSection);
+            overrideDefaultsValue("gutter", true, defaults.isGutter(), configSection);
+            //overrideDefaultsValue("highlight");
+            overrideDefaultsValue("html-script", false, defaults.isHtmlScript(), configSection);
+            overrideDefaultsValue("smart-tabs", true, defaults.isSmartTabs(), configSection);
+            overrideDefaultsValue("tab-size", Integer.toString(4), Integer.toString(defaults.getTabSize()), configSection);
+            overrideDefaultsValue("toolbar", true, defaults.isToolbar(), configSection);
+        }
+        return configSection.toString();
+    }
 
+    protected void overrideDefaultsValue(String property, String defaultValue,  String newValue,  StringBuilder builder) {
+        if ( !defaultValue.equals(newValue) ) {
+            builder.append("SyntaxHighlighter.").append(property).append(" = \"")
+                    .append(newValue).append("\";\n");
+        }
+    }
 
-
-        return null;  //To change body of created methods use File | Settings | File Templates.
+    protected void overrideDefaultsValue(String property, boolean defaultValue, boolean newValue,  StringBuilder builder) {
+        if ( newValue != defaultValue ) {
+            builder.append("SyntaxHighlighter.defaults['").append(property).append("'] = ")
+                    .append(newValue).append(";\n");
+        }
     }
 
     private String syntaxHighlighterRunAll() {
