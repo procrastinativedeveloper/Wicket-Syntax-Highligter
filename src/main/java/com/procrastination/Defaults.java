@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Defaults implements Serializable {/*defaults this options could be configured per component*/
+
+    public Defaults() {
+    }
+
     /*rethink this abstraction*/
 
     /**
@@ -66,6 +70,83 @@ public class Defaults implements Serializable {/*defaults this options could be 
      */
     private boolean toolbar = true;
 
-    public Defaults() {
+    public boolean isAutolinks() {
+        return autolinks;
+    }
+
+    public void setAutolinks(boolean autolinks) {
+        this.autolinks = autolinks;
+    }
+
+    public String getClassname() {
+        return classname;
+    }
+
+    public void setClassname(String classname) {
+        this.classname = classname;
+    }
+
+    public boolean isCollapse() {
+        return collapse;
+    }
+
+    public void setCollapse(boolean collapse) {
+        this.collapse = collapse;
+    }
+
+    public int getFirstLine() {
+        return firstLine;
+    }
+
+    public void setFirstLine(int firstLine) {
+        this.firstLine = firstLine;
+    }
+
+    public boolean isGutter() {
+        return gutter;
+    }
+
+    public void setGutter(boolean gutter) {
+        this.gutter = gutter;
+    }
+
+    public List<Integer> getHighlight() {
+        return highlight;
+    }
+
+    public void setHighlight(List<Integer> highlight) {
+        this.highlight = highlight;
+    }
+
+    public boolean isHtmlScript() {
+        return htmlScript;
+    }
+
+    public void setHtmlScript(boolean htmlScript) {
+        this.htmlScript = htmlScript;
+    }
+
+    public boolean isSmartTabs() {
+        return smartTabs;
+    }
+
+    public void setSmartTabs(boolean smartTabs) {
+        this.smartTabs = smartTabs;
+    }
+
+    public int getTabSize() {
+        return tabSize;
+    }
+
+    public void setTabSize(int tabSize) {
+        this.tabSize = tabSize;
+    }
+
+    public boolean isToolbar() {
+        return toolbar;
+    }
+
+    public void setToolbar(boolean toolbar) {
+        this.toolbar = toolbar;
     }
 }
