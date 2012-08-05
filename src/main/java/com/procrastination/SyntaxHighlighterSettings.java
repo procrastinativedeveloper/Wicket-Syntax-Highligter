@@ -14,8 +14,6 @@ import java.util.List;
 public class SyntaxHighlighterSettings implements Serializable{
 
     public SyntaxHighlighterSettings() {
-        brushes.add(Brush.Core);
-        themes.add(Theme.Core);
         themes.add(Theme.ThemeDefault);
     }
 

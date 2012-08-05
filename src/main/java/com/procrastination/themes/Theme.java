@@ -5,8 +5,6 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 
 public enum Theme {
-
-    Core("shCore"),
     CoreDefault("shCoreDefault"),
     CoreDjango("shCoreDjango"),
     CoreEclipse("shCoreEclipse"),

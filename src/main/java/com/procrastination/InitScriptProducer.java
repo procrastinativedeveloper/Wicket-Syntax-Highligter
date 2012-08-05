@@ -65,7 +65,7 @@ public class InitScriptProducer implements Serializable{
         }
     }
 
-    //TODO move into Defaults the default value
+    //TODO move into Defaults the default value //maybe only new Defaults()?
     protected String buildConfigSection() {
         Defaults defaults = settings.getDefaults();
         StringBuilder configSection = new StringBuilder();
@@ -108,7 +108,7 @@ public class InitScriptProducer implements Serializable{
         }
     }
 
-    private String syntaxHighlighterRunAll() {
+    protected String syntaxHighlighterRunAll() {
         return "SyntaxHighlighter.all();";
     }
 }

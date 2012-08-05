@@ -23,18 +23,61 @@ public class ClassAtributeDecorator extends Behavior {
         super.onComponentTag(component, tag);
         String componentTag = tag.getAttribute("class");
 
-        String tagDecoration = (Toolbox.emptyOrNull(componentTag) ? renderTag() : componentTag + " " + renderTag());
+        String tagDecoration = (Toolbox.emptyOrNull(componentTag) ? getClassAttribute() : componentTag + " " + getClassAttribute());
         tag.put("class", tagDecoration);
-    }
-
-    private String renderTag() {
-        return "";
     }
 
     @Override
     public void renderHead(Component component, IHeaderResponse response) {
         super.renderHead(component, response);
         response.render(JavaScriptHeaderItem.forReference(brush.getResourceReference()));
+    }
+
+    protected String getClassAttribute() {
+        StringBuilder result = new StringBuilder();
+        result.append(renderBrush());
+        result.append(renderDefaults());
+        return result.toString();
+    }
+
+    private String renderDefaults() {
+        StringBuilder result = new StringBuilder();
+        renderProperty("auto-links", defaults.isAutolinks(), result);
+        result.append(", ");
+        renderProperty("class-name", defaults.getClassname(), result);
+        result.append(", ");
+        renderProperty("collapse", defaults.isCollapse(), result);
+        result.append(", ");
+        renderProperty("first-line", Integer.toString(defaults.getFirstLine()), result);
+        result.append(", ");
+        renderProperty("gutter", defaults.isGutter(), result);
+        result.append(", ");
+        if ((defaults.getHighlight() != null) && (defaults.getHighlight().size() > 0)){
+            renderProperty("highlight", defaults.getHighlightAsJsArray(), result);
+            result.append(", ");
+        }
+        renderProperty("html-script", defaults.isHtmlScript(), result);
+        result.append(", ");
+        renderProperty("smart-tabs", defaults.isSmartTabs(), result);
+        result.append(", ");
+        renderProperty("tab-size", Integer.toString(defaults.getTabSize()), result);
+        result.append(", ");
+        renderProperty("toolbar", defaults.isToolbar(), result);
+
+
+        return result.toString();
+    }
+
+    protected void renderProperty(String propertyName, boolean propertyValue, StringBuilder appendTo) {
+        appendTo.append(propertyName + ": " + propertyValue);
+    }
+
+    protected void renderProperty(String propertyName, String propertyValue, StringBuilder appendTo) {
+         appendTo.append(propertyName + ": " + propertyValue);
+    }
+
+    private String renderBrush() {
+        return "brush: " + brush.getBrushName() + " ";
     }
 
     private Brush brush = null;
