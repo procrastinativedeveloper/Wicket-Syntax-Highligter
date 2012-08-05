@@ -9,32 +9,35 @@ import org.apache.wicket.request.resource.ResourceReference;
 
 import java.util.ArrayList;
 
+/**
+ * some scripts have multiple aliases, I use only one
+ */
 public enum Brush {
-    AppleScript("shBrushAppleScript", "n/a"),
-    AS3("shBrushAS3", "n/a"),
-    Bash("shBrushBash", "n/a"),
-    ColdFusion("shBrushColdFusion", "n/a"),
-    Cpp("shBrushCpp", "n/a"),
-    CSharp("shBrushCSharp", "n/a"),
-    Css("shBrushCss", "n/a"),
-    Delphi("shBrushDelphi", "n/a"),
-    Diff("shBrushDiff", "n/a"),
-    Erlang("shBrushErlang", "n/a"),
-    Groovy("shBrushGroovy", "n/a"),
+    AppleScript("shBrushAppleScript", "applescript"),
+    AS3("shBrushAS3", "as3"),
+    Bash("shBrushBash", "bash"),
+    ColdFusion("shBrushColdFusion", "coldfusion"),
+    Cpp("shBrushCpp", "cpp"),
+    CSharp("shBrushCSharp", "csharp"),
+    Css("shBrushCss", "css"),
+    Delphi("shBrushDelphi", "delphi"),
+    Diff("shBrushDiff", "diff"),
+    Erlang("shBrushErlang", "erlang"),
+    Groovy("shBrushGroovy", "groovy"),
     Java("shBrushJava", "java"),
-    JavaFX("shBrushJavaFX", "n/a"),
-    JScript("shBrushJScript", "n/a"),
-    Perl("shBrushPerl", "n/a"),
-    Php("shBrushPhp", "n/a"),
-    Plain("shBrushPlain", "n/a"),
-    PowerShell("shBrushPowerShell", "n/a"),
-    Python("shBrushPython", "n/a"),
-    Ruby("shBrushRuby", "n/a"),
-    Sass("shBrushSaas", "n/a"),
-    Scala("shBrushScala", "n/a"),
-    Sql("shBrushSql", "n/a"),
-    Vb("shBrushVb", "n/a"),
-    Xml("shBrushXml", "n/a");
+    JavaFX("shBrushJavaFX", "javafx"),
+    JScript("shBrushJScript", "js"),
+    Perl("shBrushPerl", "perl"),
+    Php("shBrushPhp", "php"),
+    Plain("shBrushPlain", "plain"),
+    PowerShell("shBrushPowerShell", "powershell"),
+    Python("shBrushPython", "python"),
+    Ruby("shBrushRuby", "ruby"),
+    Sass("shBrushSaas", "sass"),
+    Scala("shBrushScala", "scala"),
+    Sql("shBrushSql", "sql"),
+    Vb("shBrushVb", "vb"),
+    Xml("shBrushXml", "xml");
 
 
     private String resourceName = null;
