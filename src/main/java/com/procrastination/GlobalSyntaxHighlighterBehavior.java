@@ -1,5 +1,7 @@
 package com.procrastination;
 
+import com.procrastination.scripts.Brush;
+import com.procrastination.utils.Toolbox;
 import org.apache.wicket.Component;
 import org.apache.wicket.behavior.Behavior;
 import org.apache.wicket.markup.head.CssHeaderItem;
@@ -31,5 +33,14 @@ public class GlobalSyntaxHighlighterBehavior extends Behavior{
             response.render(JavaScriptHeaderItem.forReference(resource));
         }
         response.render(OnDomReadyHeaderItem.forScript(settings.generateScripts()));
+    }
+
+
+    public ClassAtributeDecorator produceClassAttributeBehavior(Brush brush, Defaults defaults) {
+        Toolbox.argumentNotNull(brush, "Brush shouldn't be null");
+        Toolbox.argumentNotNull(defaults, "Defaults shouldn't be null");
+
+        settings.putBrush(brush);
+        return new ClassAtributeDecorator(brush, defaults);
     }
 }

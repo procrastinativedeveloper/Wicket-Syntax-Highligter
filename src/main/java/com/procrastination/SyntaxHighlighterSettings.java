@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *
+ */
 public class SyntaxHighlighterSettings implements Serializable{
 
     public SyntaxHighlighterSettings() {
@@ -30,7 +33,13 @@ public class SyntaxHighlighterSettings implements Serializable{
         if (null == brush) {
             throw new RuntimeException("Brush shouldn't be null");
         }
-        brushes.add(brush);
+
+        /**
+         * Don't wanna add same brush
+         */
+        if (!brushes.contains(brush)) {
+            brushes.add(brush);
+        }
     }
 
     public String generateScripts(){
@@ -41,7 +50,7 @@ public class SyntaxHighlighterSettings implements Serializable{
     public List<ResourceReference> getJsResources() {
         List<ResourceReference> result = new ArrayList<ResourceReference>();
         for(Brush brush: brushes) {
-            result.add(brush.getBrushResource());
+            result.add(brush.getResourceReference());
         }
         return result;
     }

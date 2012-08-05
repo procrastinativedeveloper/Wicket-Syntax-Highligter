@@ -21,4 +21,10 @@ public class Toolbox {
         return !emptyOrNull(toTest);
     }
 
+    public static void argumentNotNull(Object object, String message) {
+        if (null == object) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+
 }

@@ -39,7 +39,7 @@ public enum Brush {
         this.resourceName = resourceName;
     }
 
-    public  ResourceReference getBrushResource() {
+    public  ResourceReference getResourceReference() {
         return new PackageResourceReference(Brush.class, resourceName + ".js");
     }
 }

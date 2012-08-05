@@ -4,6 +4,10 @@ import com.procrastination.utils.Toolbox;
 
 import java.io.Serializable;
 
+
+/**
+ * TODO extract interface and implement to types (global highlighter), current highlighter
+ */
 public class InitScriptProducer implements Serializable{
 
     private SyntaxHighlighterSettings settings;
